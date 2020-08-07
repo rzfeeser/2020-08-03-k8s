@@ -1,0 +1,14 @@
+---
+apiVersion: v1           # from kubernetes.io/docs
+kind: ResourceQuota      # kubernetes resource to be created
+metadata:
+  name: test-resourcequota  # name of ResourceQuota
+spec:
+  hard:                  # "may not exceed"
+  #cpu: "1"             # 1 cpu is == 1 vcore on a hypervisor or 1 hyperthread on bare metal
+  #memory: 1Gi          # 1 gig of memory
+    requests.cpu: "1"      # request == I promise you always have this min avail
+    requests.memory: 1Gi
+    limits.cpu: "2"        # limits. == I will not let you exceed this max
+    limits.memory: 3Gi
+
